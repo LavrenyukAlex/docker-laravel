@@ -1,0 +1,10 @@
+SELECT users.id, 
+CONCAT(first_name,' ', last_name) as Name,
+COUNT(user_books.user_id) as count, 
+books.author as auth 
+FROM users,user_books 
+LEFT JOIN books ON books.id = user_books.book_id
+WHERE user_books.user_id = users.id 
+AND (age > 7 AND age < 17)
+GROUP BY users.id 
+HAVING count > 1;
